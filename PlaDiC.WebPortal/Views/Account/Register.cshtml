@@ -1,0 +1,72 @@
+﻿@using PlaDiC.WebPortal.ViewModels
+@model RegisterVM
+
+@{
+
+    ViewData["Title"] = "Nuevo registro";
+}
+
+<div class="default-container">
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-4 card p-3 shadow mb-3">
+
+            <a class="text-center" asp-area="" asp-controller="Home" asp-action="Index">
+
+                <img src="/images/pladic_black.png" style="max-height:50px" />
+            </a>
+            <hr />
+            <p class="text-center text-secondary">Completa el formulario para registrar tu nueva cuenta</p>
+
+            <form asp-action="Register" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-1">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-1">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-1">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="mb-1">
+                    <label asp-for="ConfirmPassword" class="form-label"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+@*                 <div class="mb-1">
+                    <label asp-for="Address" class="form-label"></label>
+                    <textarea asp-for="Address" class="form-control" rows="2" ></textarea>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div> *@
+                <br />
+                <div class="row">
+                    <div class="col-12">
+                        <input type="submit" value="Completar registro" class="btn btn-yellow bnt-block" />
+                    </div>
+                </div>
+
+            </form>
+
+            <hr />
+            <a asp-action="Login" class="text-decoration-none float-start mt-2">¿Ya tiene una cuenta?</a>
+
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

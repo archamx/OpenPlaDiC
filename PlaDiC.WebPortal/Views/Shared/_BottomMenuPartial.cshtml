@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using PlaDiC.WebPortal.Data
+@inject SignInManager<User> signInManager
+
+
+<div class="fixed-bottom d-block d-md-none" style="background-color:#f8f9fa; height:60px;">
+    <div class="row">
+        <div class="col-3 align-content-center d-grid d-md-block">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-light d-block"><i class="fa fa-home"></i><br />Inicio</a>
+        </div>
+        @if (signInManager.IsSignedIn(User))
+        {
+            <div class="col-3 align-content-center d-grid d-md-block">
+                <a asp-controller="Home" asp-action="Options" class="btn btn-light d-block"><i class="fa fa-cogs"></i><br />Opciones</a>
+            </div>
+            <div class="col-3 align-content-center d-grid d-md-block">
+                <a asp-controller="Account" asp-action="Detail" class="btn btn-light d-block"><i class="fa fa-person-circle-check"></i><br />Cuenta</a>
+            </div>
+            <div class="col-3 align-content-center d-grid d-md-block">
+                <a asp-controller="Account" asp-action="Messages" class="btn btn-light d-block"><i class="fa fa-envelopes-bulk"></i><br />Mensajes</a>
+            </div>
+        }
+        else
+        {
+            <div class="col-3 align-content-center d-grid d-md-block">
+
+            </div>
+            <div class="col-3 align-content-center d-grid d-md-block">
+
+            </div>
+            <div class="col-3 align-content-center d-grid d-md-block">
+                <a asp-controller="Account" asp-action="Login" class="btn btn-light d-block"><i class="fa fa-sign-in"></i><br />Ingresar</a>
+            </div>
+
+        }
+
+    </div>
+
+</div>

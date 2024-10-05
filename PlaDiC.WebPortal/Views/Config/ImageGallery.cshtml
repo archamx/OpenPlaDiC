@@ -1,0 +1,152 @@
+﻿@using PlaDiC.Framework
+@model List<GlobalItem>
+@{
+
+    List<GlobalItem> list = Model;
+}
+
+
+<div class="default-container">
+
+    <div class="card shadow">
+        <div class="card-body">
+
+
+            <table cellpadding="5">
+                <tr>
+                    <td>
+                        <button class="btn btn-success"><i class="fas fa-images"></i></button>
+
+                    </td>
+                    <td>
+                        <span>
+                            <strong>Galería de imágenes</strong>
+
+                        </span>
+                    </td>
+                </tr>
+            </table>
+
+
+
+        </div>
+    </div>
+    <br />
+
+    <a href="/" class="btn btn-primary"><i class="fas fa-caret-left"></i>&nbsp;Regresar</a>
+
+    <a href="#" data-target="#modalNueva" data-toggle="modal" class="btn btn-primary"><i class="fas fa-plus"></i>&nbsp;Agregar imagen</a>
+    <br />
+    <br />
+
+    @if (list != null && list.Count > 0)
+    {
+        <div class="row">
+            @foreach (var item in list)
+            {
+                <div class="col-md-3 mb-3">
+
+                    <div class="card shadow h-100">
+                        <div class="card-body">
+                            <a href="#" onclick="$('#nombreImagen').val('@item.Name')" data-target="#modalEliminar" data-toggle="modal" class="btn btn-danger btn-sm float-right"><i class="fas fa-times"></i></a>
+                            <hr />
+                            <div class="text-center">
+                                <label class="text-center">@item.Name</label><br />
+
+                                <img src="/images/@item.Name" width="64" />
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <br />
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="text-center" style="color:#a1a1a1;">
+                    <h4>No hay imágenes disponibles</h4>
+                    <i class="fas fa-images fa-3x"></i>
+                </div>
+
+            </div>
+        </div>
+    }
+
+
+    <div class="modal fade" id="modalNueva" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+
+            @using (Html.BeginForm("NuevaImagenGaleria", "Configuracion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmación</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <label>Imagen</label>
+                        <input type="file" accept="image/*;capture=camera" name="file" id="file" class="form-control" required>
+
+                        @Html.AntiForgeryToken()
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" onclick="showSplash('Actualizando información...');" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;Aceptar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i>&nbsp;Cancelar</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+
+            @using (Html.BeginForm("EliminarImagenGaleria", "Configuracion", FormMethod.Post))
+            {
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmación</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <h4>¿Desea eliminar la imagen seleccionada de la galería?</h4>
+                        <p>Esta acción puede limitar las vistas que hacen referencia a esta imagen</p>
+
+                        <input type="hidden" name="Imagen" id="nombreImagen" />
+
+                        @Html.AntiForgeryToken()
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" onclick="showSplash('Actualizando información...');" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;Aceptar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i>&nbsp;Cancelar</button>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+
+
+
+
+
+</div>
+

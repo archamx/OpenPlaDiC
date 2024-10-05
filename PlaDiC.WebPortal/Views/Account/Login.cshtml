@@ -1,0 +1,58 @@
+﻿@using PlaDiC.WebPortal.ViewModels
+@model LoginVM
+
+@{
+
+    ViewData["Title"] = "Inicio de sesión";
+}
+<div class="default-container">
+
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-3 card p-3 shadow mb-3">
+            <a class="text-center" asp-area="" asp-controller="Home" asp-action="Index">
+
+                <img src="/images/pladic_black.png" style="max-height:50px" />
+            </a>
+            <hr />
+            <p class="text-center text-secondary">Ingresa al portal para realizar tus actividades</p>
+            <form asp-action="Login" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-1">
+                    <label asp-for="Username" class="form-label"></label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+
+                <div class="mb-1">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="mb-1 form-check form-switch">
+                    <label class="form-check-label">
+                        <input asp-for="RememberMe" class="form-check-input" /> @Html.DisplayNameFor(a => a.RememberMe)
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                    </div>
+                    <div class="col-4">
+                        <input type="submit" value="Iniciar sesión" class="btn btn-yellow float-end" />
+                    </div>
+                </div>
+
+            </form>
+            <hr />
+            <a asp-action="Register" class="text-decoration-none float-start mt-2">¿No tiene una cuenta?</a>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

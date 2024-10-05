@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using PlaDiC.WebPortal.Data
+@inject SignInManager<User> signInManager
+
+
+
+<ul class="navbar-nav">
+
+    @if (signInManager.IsSignedIn(User))
+    {
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-dashboard"></i>&nbsp; Opciones
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                    <a class="dropdown-item" asp-action="Detail" asp-controller="Account"><i class="fa fa-person-circle-check"></i>&nbsp; Cuenta</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-action="Messages" asp-controller="Account"><i class="fa fa-envelopes-bulk"></i>&nbsp; Mensajes</a>
+                </li>
+
+
+
+                <li>
+                    <a class="dropdown-item" asp-action="Logout" asp-controller="Account"><i class="fa fa-sign-out"></i>&nbsp; Cerrar sesión</a>
+                </li>
+
+            </ul>
+        </li>
+
+    }
+    else
+    {
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fa fa-eye-slash"></i>&nbsp;Aviso de privacidad</a>
+        </li>
+
+    }
+
+</ul>
+

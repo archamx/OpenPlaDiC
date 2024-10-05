@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    string msg = "";
+    bool isAuthenticated = User.Identity.IsAuthenticated;
+    if (isAuthenticated)
+    {
+        msg = "Tu actividad para hoy";
+    }
+    else
+    {
+        
+        msg = "Tu siguiente y último Portal Web";
+    }
+}
+
+<div class="default-container">
+    <div class="card shadow">
+        <div class="card-body">
+            <div class="text-center">
+                <h1 class="display-4">Bienvenido a PlaDiC</h1>
+
+                <h3>@msg</h3>
+
+                @if (!isAuthenticated)
+                {
+                    <a class="btn btn-yellow" asp-area="" asp-controller="Account" asp-action="Login">Iniciar sesión</a>
+
+                }
+                <hr />
+                <h5>@TempData["FechaHora"]</h5>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

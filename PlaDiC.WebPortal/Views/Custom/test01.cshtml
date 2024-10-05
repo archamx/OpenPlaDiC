@@ -1,0 +1,46 @@
+﻿@using Newtonsoft.Json
+@using PlaDiC.Framework
+@using System.Security.Claims
+@{
+
+    string _nombre = "";
+
+    var listaP = JsonConvert.DeserializeObject<List<Parameter>>(TempData["DataQuery"].ToString());
+
+    var resp = ViewHelper.GetSql("select current_date from rdb$database");
+
+    if(User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        var identidad = (ClaimsIdentity)User.Identity;
+        _nombre = (string.IsNullOrEmpty(identidad.Name) ? identidad?.FindFirst("Name")?.Value : identidad.Name);
+
+    }
+
+
+}
+
+
+@if(User.Identity.IsAuthenticated)
+{
+    <h2>Hola @_nombre</h2>
+}
+else
+{
+
+    <h2>Hola mundo</h2>
+
+}
+@DateTime.Now.ToShortDateString()
+@if(listaP != null)
+{foreach(var item in listaP)
+{
+    <p>@item.Name | @item.Value</p><hr />
+
+}
+}
+
+@if (resp.IsSuccess && resp.Data.Rows.Count > 0)
+{
+<h3>@resp.Data.Rows[0][0]</h3>    
+    
+}

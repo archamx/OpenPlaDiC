@@ -1,0 +1,60 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.default-container {
+    padding: 15px;
+}
+
+.btn-yellow {
+    color: #000;
+    background-color: #ffbd30;
+    border-color: #d5a02f;
+}
+
+.btn-yellow:hover {
+    color: #fff;
+    background-color: #d5a02f;
+    border-color: #b68a2b;
+}
+
+.form-check-input:checked {
+    background-color: #d5a02f;
+    border-color: #d5a02f;
+}
+
+.form-check-input:checked {
+    background-color: #d5a02f;
+    border-color: #d5a02f;
+}
+
+.form-control:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 2px solid #ffd800;
+}
+
+.form-check-input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 2px solid #ffd800;
+}
