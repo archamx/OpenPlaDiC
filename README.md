@@ -1,2 +1,2 @@
 # PlaDiC
-Plataforma Digital Colaborativa de Código Abirto
+Plataforma Digital Colaborativa de Código Abierto
